@@ -1,0 +1,1 @@
+# MinimalFit-E-commerce-Django-Application
