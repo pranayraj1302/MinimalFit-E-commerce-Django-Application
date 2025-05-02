@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Minimal Fit</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Smooth Button Hover Effect */
+        .btn-hover {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .btn-hover:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Fade-in Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeIn 0.8s ease-in-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-white text-black">
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 w-full bg-white shadow-md px-8 py-4 flex justify-between items-center z-50">
+        <h1 class="text-2xl font-extrabold tracking-wide">Minimal Fit</h1>
+        <div class="hidden md:flex gap-6 items-center">
+            <a href="/" class="text-gray-700 hover:text-black transition">Home</a>
+            <a href="{% url 'catalogue' %}" class="text-gray-700 hover:text-black transition">Catalogue</a>
+            <a href="{% url 'about' %}" class="text-black font-semibold">About</a>
+            <a href="{% url 'contact' %}" class="text-gray-700 hover:text-black transition">Contact</a>
+        </div>
+        <a href="#" class="px-6 py-2 bg-black text-white font-bold rounded-full btn-hover">Login</a>
+    </nav>
+
+    <!-- About Section -->
+    <div class="flex items-center justify-center min-h-screen pt-24 px-6">
+        <div class="p-12 rounded-lg shadow-lg max-w-3xl w-full text-center border border-gray-200 fade-in">
+            <img src="#" alt="Minimal Fit Logo" class="mx-auto rounded-full mb-6 shadow-md w-28 h-28 border-2 border-gray-300">
+            <h1 class="text-4xl font-extrabold mb-4">About Minimal Fit</h1>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                At Minimal Fit, we believe simplicity is the ultimate sophistication. Our brand is dedicated to creating high-quality minimalist clothing that embraces timeless elegance and effortless style.
+            </p>
+
+            <div class="mt-8 space-y-8 text-left">
+                <div class="fade-in">
+                    <h2 class="text-xl font-semibold text-black">Our Philosophy</h2>
+                    <p class="text-gray-600 leading-relaxed mt-2">
+                        Inspired by minimalism, we design versatile, functional, and aesthetically pleasing pieces. Clean lines, neutral colors, and thoughtfully curated designs seamlessly fit into your lifestyle.
+                    </p>
+                </div>
+
+                <div class="fade-in" style="animation-delay: 0.2s;">
+                    <h2 class="text-xl font-semibold text-black">Quality Over Quantity</h2>
+                    <p class="text-gray-600 leading-relaxed mt-2">
+                        We prioritize quality in every aspect, sourcing premium fabrics to ensure durability and style. Our craftsmanship ensures each piece is as resilient as it is elegant.
+                    </p>
+                </div>
+
+                <div class="fade-in" style="animation-delay: 0.4s;">
+                    <h2 class="text-xl font-semibold text-black">Sustainability Matters</h2>
+                    <p class="text-gray-600 leading-relaxed mt-2">
+                        We are committed to sustainability, using eco-friendly practices to minimize environmental impact. Choosing Minimal Fit means supporting a brand that values both fashion and the planet.
+                    </p>
+                </div>
+
+                <div class="fade-in" style="animation-delay: 0.6s;">
+                    <h2 class="text-xl font-semibold text-black">Join Our Community</h2>
+                    <p class="text-gray-600 leading-relaxed mt-2">
+                        Be part of a like-minded community that appreciates the art of simplicity. Thank you for joining us in redefining minimalist fashion with sustainable and stylish apparel.
+                    </p>
+                </div>
+            </div>
+
+            <div class="text-center mt-10 fade-in" style="animation-delay: 0.8s;">
+                <button onclick="showMessage()" class="px-6 py-3 bg-black text-white rounded-full btn-hover">Discover More</button>
+                <p id="message" class="mt-4 text-gray-700 hidden">Join us in redefining minimalist fashion with sustainable and stylish apparel.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showMessage() {
+            document.getElementById('message').classList.toggle('hidden');
+        }
+    </script>
+
+</body>
+</html>

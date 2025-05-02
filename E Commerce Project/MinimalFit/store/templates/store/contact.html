@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Minimal Fit</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <style>
+        /* General Smooth Fade-In Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fadeIn {
+            animation: fadeIn 0.8s ease-in-out forwards;
+        }
+
+        /* Success message styling */
+        .success-message {
+            display: none;
+        }
+
+        /* Include styles for the login button */
+        .login-button {
+            outline: none;
+            cursor: pointer;
+            border: none;
+            padding: 0.9rem 2rem;
+            margin: 0;
+            font-family: inherit;
+            font-size: inherit;
+            position: relative;
+            display: inline-block;
+            letter-spacing: 0.05rem;
+            font-weight: 700;
+            font-size: 17px;
+            border-radius: 500px;
+            overflow: hidden;
+            background: #66ff66;
+            color: ghostwhite;
+        }
+
+        .login-button span {
+            position: relative;
+            z-index: 10;
+            transition: color 0.4s;
+        }
+
+        .login-button:hover span {
+            color: black;
+        }
+
+        .login-button::before,
+        .login-button::after {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .login-button::before {
+            content: "";
+            background: #000;
+            width: 120%;
+            left: -10%;
+            transform: skew(30deg);
+            transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
+        }
+
+        .login-button:hover::before {
+            transform: translate3d(100%, 0, 0);
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 w-full bg-white shadow-md px-6 py-4 flex justify-between items-center z-50">
+        <h1 class="text-2xl font-bold">Minimal Fit</h1>
+
+        <div class="hidden md:flex gap-8 items-center">
+            <a href="/" class="hover:underline">Home</a>
+            <a href="{% url 'catalogue' %}" class="hover:underline">Catalogue</a>
+
+            <!-- Mega Menu -->
+            <!--<div class="relative group">
+                <button id="categoriesButton" class="hover:underline flex items-center">Categories ▾</button>
+                <div id="megaMenu" class="absolute left-0 top-full mega-menu bg-white text-black shadow-lg rounded-lg mt-2 p-6 w-[600px] hidden">
+                    <div class="grid grid-cols-3 gap-6">
+                        <div>
+                            <h4 class="font-bold mb-2">Men</h4>
+                            <a href="#" class="block hover:text-gray-500">T-Shirts</a>
+                            <a href="#" class="block hover:text-gray-500">Shirts</a>
+                        </div>
+                        <div>
+                            <h4 class="font-bold mb-2">Women</h4>
+                            <a href="#" class="block hover:text-gray-500">Dresses</a>
+                            <a href="#" class="block hover:text-gray-500">Tops</a>
+                        </div>
+                        <div>
+                            <h4 class="font-bold mb-2">Accessories</h4>
+                            <a href="#" class="block hover:text-gray-500">Bags</a>
+                            <a href="#" class="block hover:text-gray-500">Shoes</a>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+
+            <a href="{% url 'about' %}" class="hover:underline">About</a>
+            <a href="{% url 'contact' %}" class="hover:underline">Contact</a>
+        </div>
+
+        <button class="login-button"><span>Login</span></button>
+    </nav>
+
+    <!-- Contact Form Section -->
+    <div class="flex items-center justify-center min-h-screen">
+        <div class="bg-white p-8 rounded-2xl shadow-lg max-w-lg w-full">
+            <h2 class="text-3xl font-semibold text-gray-800 mb-6 text-center">Contact Us</h2>
+            <form id="contactForm" class="space-y-4">
+                <div class="flex flex-col">
+                    <label for="email" class="text-gray-700 font-medium">Company Email</label>
+                    <input type="email" id="email" name="email" required
+                        class="mt-2 p-3 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                        placeholder="Enter your company email">
+                </div>
+                <div class="flex flex-col">
+                    <label for="textarea" class="text-gray-700 font-medium">How Can We Help You?</label>
+                    <textarea name="textarea" id="textarea" rows="5" required
+                        class="mt-2 p-3 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                        placeholder="Write your message here..."></textarea>
+                </div>
+                <button type="submit"
+                    class="w-full bg-black text-white py-3 rounded-lg hover:bg-gray-800 transition duration-300">
+                    Submit
+                </button>
+            </form>
+            <div id="successMessage" class="success-message mt-4 text-center text-green-600 font-medium">
+                Your message has been sent successfully!
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript to handle form submission and mega menu -->
+    <script>
+        // Handle form submission
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+            // Display success message
+            document.getElementById('successMessage').style.display = 'block';
+            // Reset the form
+            this.reset();
+        });
+
+        // Handle mega menu functionality
+        document.getElementById('categoriesButton').addEventListener('click', function() {
+            const megaMenu = document.getElementById('megaMenu');
+            megaMenu.classList.toggle('hidden'); // Toggle visibility of mega menu
+        });
+
+        // Close the mega menu if clicked outside
+        document.addEventListener('click', function(event) {
+            const megaMenu = document.getElementById('megaMenu');
+            const categoriesButton = document.getElementById('categoriesButton');
+            if (!categoriesButton.contains(event.target) && !megaMenu.contains(event.target)) {
+                megaMenu.classList.add('hidden'); // Hide mega menu
+            }
+        });
+    </script>
+
+</body>
+</html>

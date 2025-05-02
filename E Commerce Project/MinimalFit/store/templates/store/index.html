@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimal Fit - Modern Minimalist Clothing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <style>
+        /* General Smooth Fade-In Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fadeIn {
+            animation: fadeIn 0.8s ease-in-out forwards;
+        }
+
+        /* Enhanced Product Card Styling */
+        .product-card {
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .product-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Dynamic Label for New Products */
+        .product-label {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #ff3b3b;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 4px 8px;
+            border-radius: 3px;
+        }
+
+        /* Mega Menu - Improved Hover Effect */
+        .mega-menu {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+        }
+        .group:hover .mega-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* Testimonials - Sleek Card Design */
+        .testimonial-card {
+            border-radius: 10px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .testimonial-card:hover {
+            transform: scale(1.03);
+        }
+
+        /* Swiper Pagination Customization */
+        .swiper-pagination-bullet {
+            background: #333 !important;
+            opacity: 0.6;
+        }
+        .swiper-pagination-bullet-active {
+            background: black !important;
+            opacity: 1;
+        }
+
+        /* Parallax Scrolling Effect - Smoother */
+        #parallax-bg {
+            transition: transform 0.2s ease-out;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900">
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 w-full bg-white shadow-md px-6 py-4 flex justify-between items-center z-50">
+        <h1 class="text-2xl font-bold">Minimal Fit</h1>
+
+        <div class="hidden md:flex gap-8 items-center">
+            <a href="#" class="hover:underline">Home</a>
+            <a href="{% url 'catalogue' %}" class="hover:underline">Catalogue</a>
+
+            <!-- Mega Menu -->
+            <!--<div class="relative group">
+                <button class="hover:underline flex items-center">Categories ▾</button>
+                <div class="absolute left-0 top-full mega-menu bg-white text-black shadow-lg rounded-lg mt-2 p-6 w-[600px]">
+                    <div class="grid grid-cols-3 gap-6">
+                        <div>
+                            <h4 class="font-bold mb-2">Men</h4>
+                            <a href="#" class="block hover:text-gray-500">T-Shirts</a>
+                            <a href="#" class="block hover:text-gray-500">Shirts</a>
+                        </div>
+                        <div>
+                            <h4 class="font-bold mb-2">Women</h4>
+                            <a href="#" class="block hover:text-gray-500">Dresses</a>
+                            <a href="#" class="block hover:text-gray-500">Tops</a>
+                        </div>
+                        <div>
+                            <h4 class="font-bold mb-2">Accessories</h4>
+                            <a href="#" class="block hover:text-gray-500">Bags</a>
+                            <a href="#" class="block hover:text-gray-500">Shoes</a>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+            <a href="{% url 'about' %}" class="hover:underline">About</a>
+            <a href="{% url 'contact' %}" class="hover:underline">Contact</a>
+        </div>
+
+        <button class="login-button"><span>Login</span></button>
+    </nav>
+
+    <!-- Parallax Section -->
+    <div class="relative h-[400px] overflow-hidden">
+    <div class="absolute inset-0 bg-fixed bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1544957992-20514f595d6f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fG1pbmltYWxpc3QlMjBmYXNoaW9uJTIwZm9yJTIwZGVza3RvcHxlbnwwfHwwfHx8MA%3D%3D'); transform: translateY(0);" id="parallax-bg"></div>
+    <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col items-center justify-center">
+        <h2 class="text-white text-4xl font-bold mb-4">Minimal Fashion, Maximum Style</h2>
+
+        <!-- Add margin-top to the button for spacing -->
+        <button href="#" class="button" style="--clr: #000000">
+  <span class="button__icon-wrapper">
+    <svg
+      viewBox="0 0 14 15"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class="button__icon-svg"
+      width="10"
+    >
+      <path
+        d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+        fill="currentColor"
+      ></path>
+    </svg>
+
+    <svg
+      viewBox="0 0 14 15"
+      fill="none"
+      width="10"
+      xmlns="http://www.w3.org/2000/svg"
+      class="button__icon-svg button__icon-svg--copy"
+    >
+      <path
+        d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+        fill="currentColor"
+      ></path>
+    </svg>
+  </span>
+  Find Your Style
+</button>
+
+    </div>
+</div>
+
+    <!-- Products Section -->
+<section class="p-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
+    {% for product in products %}
+    <div class="bg-white p-4 rounded-lg shadow-md flex flex-col items-center product-card opacity-0 animate-fadeIn
+                transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-lg relative">
+
+        <!-- Image Container -->
+        <div class="w-full h-64 overflow-hidden rounded-lg relative">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full h-full object-cover transition-all duration-300 hover:scale-110">
+
+            <!-- Product Label (e.g., New Arrival, Sale) -->
+            <span class="absolute top-3 left-3 bg-black text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg animate-fadeSlide">
+                New Arrival
+            </span>
+        </div>
+
+        <!-- Product Details -->
+        <h3 class="text-xl font-bold mt-4 text-center">{{ product.name }}</h3>
+        <p class="text-gray-600 mt-2 text-center">{{ product.description }}</p>
+        <p class="text-lg font-semibold mt-2 text-center">${{ product.price }}</p>
+
+        <!-- View Details Button -->
+<!-- View Details Button -->
+<a href="{% url 'catalogue' %}" class="animated-button">
+    <span>Know More</span>
+    <span></span>
+</a>
+
+    </div>
+    {% endfor %}
+</section>
+
+
+
+<!-- Styles -->
+<style>
+        .login-button {
+        outline: none;
+        cursor: pointer;
+        border: none;
+        padding: 0.9rem 2rem;
+        margin: 0;
+        font-family: inherit;
+        font-size: inherit;
+        position: relative;
+        display: inline-block;
+        letter-spacing: 0.05rem;
+        font-weight: 700;
+        font-size: 17px;
+        border-radius: 500px;
+        overflow: hidden;
+        background: #66ff66;
+        color: ghostwhite;
+    }
+
+    .login-button span {
+        position: relative;
+        z-index: 10;
+        transition: color 0.4s;
+    }
+
+    .login-button:hover span {
+        color: black;
+    }
+
+    .login-button::before,
+    .login-button::after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+    }
+
+    .login-button::before {
+        content: "";
+        background: #000;
+        width: 120%;
+        left: -10%;
+        transform: skew(30deg);
+        transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
+    }
+
+    .login-button:hover::before {
+        transform: translate3d(100%, 0, 0);
+    }
+
+    /* Fade-In Effect */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    .animate-fadeIn {
+        animation: fadeIn 0.8s ease-in-out forwards;
+    }
+
+    /* Label Animation */
+    @keyframes fadeSlide {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    .animate-fadeSlide {
+        animation: fadeSlide 0.6s ease-out forwards;
+    }
+
+    #backToTop {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: black;
+    color: white;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s;
+}
+
+#backToTop.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+#backToTop:hover {
+    background: gray;
+}
+
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    padding: 10px 20px;
+    border: 2px solid var(--text-color);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.back-to-top:hover {
+    background-color: var(--text-color);
+    color: var(--bg-color);
+}
+
+.animated-button {
+  position: relative;
+  display: inline-block;
+  padding: 12px 24px;
+  border: none;
+  font-size: 16px;
+  background-color: black;
+  border-radius: 100px;
+  font-weight: 600;
+  color: #ffffff;
+  box-shadow: 0 0 0 2px #ffffff20;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+  text-align: center;
+  text-decoration: none;
+}
+
+.animated-button span:last-child {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  background-color: #66CC66;;
+  border-radius: 50%;
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.animated-button span:first-child {
+  position: relative;
+  z-index: 1;
+}
+
+.animated-button:hover {
+  box-shadow: 0 0 0 5px #2195f360;
+  color: #ffffff;
+}
+
+.animated-button:active {
+  scale: 0.95;
+}
+
+.animated-button:hover span:last-child {
+  width: 150px;
+  height: 150px;
+  opacity: 1;
+}
+.button {
+  line-height: 1;
+  text-decoration: none;
+  display: inline-flex;
+  border: none;
+  cursor: pointer;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: var(--clr);
+  color: #fff;
+  border-radius: 10rem;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  padding-left: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: background-color 0.3s;
+}
+
+.button__icon-wrapper {
+  flex-shrink: 0;
+  width: 25px;
+  height: 25px;
+  position: relative;
+  color: var(--clr);
+  background-color: #fff;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.button:hover {
+  background-color: #000;
+}
+
+.button:hover .button__icon-wrapper {
+  color: #000;
+}
+
+.button__icon-svg--copy {
+  position: absolute;
+  transform: translate(-150%, 150%);
+}
+
+.button:hover .button__icon-svg:first-child {
+  transition: transform 0.3s ease-in-out;
+  transform: translate(150%, -150%);
+}
+
+.button:hover .button__icon-svg--copy {
+  transition: transform 0.3s ease-in-out 0.1s;
+  transform: translate(0);
+}
+
+
+
+</style>
+
+    <!-- Customer Testimonials Section -->
+    <section class="py-20 bg-gray-100">
+        <h2 class="text-3xl font-bold text-center mb-8">What Our Customers Say</h2>
+        <div class="swiper-container w-full max-w-4xl mx-auto">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide testimonial-card p-6 text-center bg-white">
+                    <p class="text-gray-700 italic">"The quality is amazing! Minimal Fit is my new favorite store!"</p>
+                    <h4 class="font-bold mt-4">- Sarah K.</h4>
+                </div>
+                <div class="swiper-slide testimonial-card p-6 text-center bg-white">
+                    <p class="text-gray-700 italic">"Absolutely love the clean designs. Worth every penny!"</p>
+                    <h4 class="font-bold mt-4">- Jason M.</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-12 bg-gray-100 flex justify-center">
+    <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-lg text-center">
+        <h2 class="text-3xl font-semibold text-gray-900">📩 Stay Updated!</h2>
+        <p class="mt-2 text-gray-600">Get the latest trends & exclusive discounts in your inbox.</p>
+        <div class="mt-6 flex items-center border border-gray-300 rounded-lg overflow-hidden">
+            <input type="email" placeholder="Enter your email"
+                   class="flex-1 px-4 py-3 text-gray-800 focus:outline-none">
+            <button class="bg-gray-900 text-white px-6 py-3 font-medium hover:bg-gray-700 transition-all">
+                Subscribe
+            </button>
+        </div>
+    </div>
+</section>
+
+
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+            loop: true,
+            autoplay: { delay: 3000 },
+            navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+            effect: 'slide',
+        });
+    </script>
+
+<button id="backToTop" class="fixed bottom-5 right-5 bg-black text-white px-4 py-2 rounded-full shadow-lg opacity-0 transition-all duration-300">
+    ↑ Top
+</button>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var backToTopBtn = document.getElementById("backToTop");
+
+        window.addEventListener("scroll", function () {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add("show");
+            } else {
+                backToTopBtn.classList.remove("show");
+            }
+        });
+
+        backToTopBtn.addEventListener("click", function () {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimal Fit - Product Details</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-900">
+
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md p-4 flex justify-between items-center">
+        <h1 class="text-2xl font-bold">Minimal Fit</h1>
+        <div class="flex gap-6">
+            <input type="text" placeholder="Search..." class="border p-2 rounded-lg">
+            <button class="text-lg">🛒 Cart</button>
+        </div>
+    </nav>
+
+    <!-- Product Details Section -->
+    <section class="p-10 grid grid-cols-1 md:grid-cols-2 gap-10">
+        <!-- Product Image -->
+        <div>
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full rounded-lg shadow-md">
+
+        </div>
+
+        <!-- Product Info -->
+        <div>
+            <h2 class="text-3xl font-bold">Minimalist T-Shirt</h2>
+            <p class="text-gray-600 text-lg mt-2">A premium quality minimalist t-shirt designed for comfort and style.</p>
+            <p class="text-2xl font-semibold mt-4">$30.00</p>
+
+            <!-- Size Selection -->
+            <div class="mt-4">
+                <h3 class="font-semibold">Select Size:</h3>
+                <div class="flex gap-4 mt-2">
+                    <button class="px-4 py-2 border rounded-lg">S</button>
+                    <button class="px-4 py-2 border rounded-lg">M</button>
+                    <button class="px-4 py-2 border rounded-lg">L</button>
+                    <button class="px-4 py-2 border rounded-lg">XL</button>
+                </div>
+            </div>
+
+            <!-- Color Selection -->
+            <div class="mt-4">
+                <h3 class="font-semibold">Select Color:</h3>
+                <div class="flex gap-4 mt-2">
+                    <button class="w-10 h-10 rounded-full bg-black border"></button>
+                    <button class="w-10 h-10 rounded-full bg-gray-500 border"></button>
+                    <button class="w-10 h-10 rounded-full bg-blue-600 border"></button>
+                    <button class="w-10 h-10 rounded-full bg-red-600 border"></button>
+                </div>
+            </div>
+
+            <!-- Add to Cart Button -->
+            <button class="mt-6 w-full bg-black text-white py-3 rounded-lg text-lg">Add to Cart</button>
+        </div>
+    </section>
+
+</body>
+</html>
